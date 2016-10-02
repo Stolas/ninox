@@ -36,6 +36,11 @@ void window_print(int color, int x, int y, char *str) {
 	refresh();
 }
 
+void window_clear(WINDOW *win)
+{
+	wclear(win);
+}
+
 void window_free(WINDOW *win)
 {
 	delwin(win);

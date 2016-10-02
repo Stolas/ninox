@@ -5,6 +5,7 @@
 
 extern WINDOW *window_init();
 extern void window_print(int color, int x, int y, char *str);
+extern void window_clear(WINDOW *win);
 extern void window_free(WINDOW *win);
 
 #endif
