@@ -1,0 +1,10 @@
+#ifndef _CURSES_H__
+#define _CURSES_H__
+
+#include <curses.h>
+
+extern WINDOW *window_init();
+extern void window_print(int color, int x, int y, char *str);
+extern void window_free(WINDOW *win);
+
+#endif
