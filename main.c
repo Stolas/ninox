@@ -2,13 +2,16 @@
 #include <unistd.h>
 #include "mycurses.h"
 #include "script.h"
+#include "config.h"
 #include "gpio.h"
 
 int main(int argc, char **argv)
 {
 	struct script *s;
+	struct config *c;
 	WINDOW *window;
 
+	c = config_init(NULL);
 	window = window_init();
 	s = script_init();
 
@@ -19,8 +22,9 @@ int main(int argc, char **argv)
 	}
 
 	for(;;) {
-		script_run(s, "main.lua");
-		sleep(3);
+		script_run(s, c->lua_script);
+		sleep(c->sleep_time);
+		window_clear(window);
 	}
 
 	window_free(window);

@@ -9,11 +9,11 @@
 static int l_print(lua_State *L)
 {
 	int color = lua_tonumber(L, 1);
-	int x = lua_tonumber(L, 2);
-	int y = lua_tonumber(L, 3);
-	char *str = lua_tostring(L, 4);
+	int y = lua_tonumber(L, 2);
+	int x = lua_tonumber(L, 3);
+	char *str = (char*)lua_tostring(L, 4);
 
-	window_print(color, x, y, str);
+	window_print(color, y, x, str);
 	return 0;
 }
 
@@ -42,17 +42,14 @@ void script_run(struct script *s, char *filename)
 
 	status = luaL_loadfile(s->L, filename);
 	if(status) {
-		/* TODO: Cleanup.. */
-		fprintf(stderr, "Couldn't load file: %s\n", lua_tostring(s->L, -1));
-		exit(1);
+		window_error("Failed to load file");
 	}
 
 
 	status = lua_pcall(s->L, 0, LUA_MULTRET, 0);
 	if(status) {
-		/* TODO: Cleanup.. */
-		fprintf(stderr, "Failed to run script: %s\n", lua_tostring(s->L, -1));
-		exit(1);
+		// fprintf(stderr, "Failed to run script: %s\n", lua_tostring(s->L, -1));
+		window_error("Failed to run script.");
 	}
 }
 

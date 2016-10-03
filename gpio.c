@@ -4,8 +4,10 @@
 #include <unistd.h>
 #include "gpio.h"
 
+
 int gpio_init()
 {
+#ifdef WITH_GPIO
 	int mem_fd;
 	void *gpio_map;
 
@@ -25,5 +27,6 @@ int gpio_init()
 		return EXIT_FAILURE;
 	}
 	gpio = (volatile unsigned*)gpio_map;
+#endif
 	return EXIT_SUCCESS;
 }

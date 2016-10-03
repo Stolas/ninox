@@ -1,6 +1,8 @@
 #ifndef _GPIO_H__
 #define _GPIO_H__
 
+#ifdef WITH_GPIO
+
 #define BCM2708_PERI_BASE        0x20000000
 #define GPIO_BASE                (BCM2708_PERI_BASE + 0x200000) /* GPIO controller */
 
@@ -8,7 +10,6 @@
 #define PAGE_SIZE (4*1024)
 #define BLOCK_SIZE (4*1024)
 
-volatile unsigned *gpio = NULL;
 
 // GPIO setup macros. Always use INP_GPIO(x) before using OUT_GPIO(x) or SET_GPIO_ALT(x,y)
 #define INP_GPIO(g) *(gpio+((g)/10)) &= ~(7<<(((g)%10)*3))
@@ -24,5 +25,10 @@ volatile unsigned *gpio = NULL;
 #define GPIO_PULLCLK0 *(gpio+38) // Pull up/pull down clock
 
 
+volatile unsigned *gpio = NULL;
+
+#endif
+
 extern int gpio_init();
 #endif
+

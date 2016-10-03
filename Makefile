@@ -3,9 +3,14 @@ obj = $(src:.c=.o)
 
 LDFLAGS = -lncurses -llua -Wall
 
+# gpio:
+# 	WITH_GPIO = -DWITH_GPIO
+#
+# rpm:
+
 ninox: $(obj)
-		$(CC) -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS) $(WITH_GPIO)
 
 .PHONY: clean
-	clean:
-		rm -rf $(obj) ninox
+clean:
+	rm -rf $(obj) ninox
