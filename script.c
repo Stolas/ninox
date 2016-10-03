@@ -1,12 +1,13 @@
-#include <stdlib.h>
-#include <lua.h>
+#include <curses.h>
 #include <lauxlib.h>
+#include <lua.h>
 #include <lualib.h>
-#include "script.h"
+#include <stdlib.h>
 #include "mycurses.h"
+#include "script.h"
 
 /* Script Implements */
-static int l_print(lua_State *L)
+static int l_nprint(lua_State *L)
 {
 	int color = lua_tonumber(L, 1);
 	int y = lua_tonumber(L, 2);
@@ -14,6 +15,14 @@ static int l_print(lua_State *L)
 	char *str = (char*)lua_tostring(L, 4);
 
 	window_print(color, y, x, str);
+	return 0;
+}
+
+static int l_pprint(lua_State *L)
+{
+	char *str = (char*)lua_tostring(L, 1);
+
+	printw(str);
 	return 0;
 }
 
@@ -29,7 +38,8 @@ extern struct script *script_init()
 
 	s->L = luaL_newstate();
 	luaL_openlibs(s->L);
-	lua_register(s->L, "nprint", &l_print);
+	lua_register(s->L, "nprint", &l_nprint);
+	lua_register(s->L, "pprint", &l_pprint);
 	return s;
 }
 

@@ -6,7 +6,9 @@
 WINDOW *window_init()
 {
 	WINDOW *mainwin;
+
 	mainwin = initscr();
+	cbreak();
 	if(mainwin == NULL) {
 		return NULL;
 	}
@@ -29,6 +31,12 @@ WINDOW *window_init()
 	}
 
 	// border(mainwin, 0, 0, 10, 10);
+	WINDOW *error_win;
+
+	error_win = newwin(3, 80, 0, 0);
+	box(error_win, 0, 0);
+	wrefresh(error_win);
+
 
 	return mainwin;
 }

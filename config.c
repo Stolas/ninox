@@ -12,7 +12,7 @@ struct config* config_init(const char *config_file)
 
 	conf->lua_script = "main.lua";
 	conf->sleep_time = 3;
-	conf->enable_gpio = FALSE;
+	conf->enable_gpio = 1;
 
 	if(config_file != NULL) {
 		/* TODO: Load Config. */
