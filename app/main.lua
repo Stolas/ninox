@@ -30,7 +30,7 @@ nprint(1, 1, 28, "4");
 -- COOL idea, harvest credentails from ILASS process and show them on screen. For kicks.
 --
 
-doom = false
+doom = true
 
 if doom == true then
     nprint(4, 4, 0, "DOOM: ");
