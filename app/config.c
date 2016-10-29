@@ -17,6 +17,8 @@ struct config* config_init(const char *config_file)
 	if(config_file != NULL) {
 		/* TODO: Load Config. */
 	}
+
+	return conf;
 }
 
 void config_free(struct config* conf)
