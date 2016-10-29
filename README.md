@@ -1,3 +1,8 @@
+# I just remembered conky has a ncurses interface. SO I am going to use this
+# Project: Abandoned
+
+
+
 # Ninox
 
 Back in 2008-ish Logitech released their G15 keyboard.
