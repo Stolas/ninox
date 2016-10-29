@@ -1,7 +1,7 @@
 src = $(wildcard *.c)
 obj = $(src:.c=.o)
 
-LDFLAGS = -lncurses -llua -Wall
+LDFLAGS = -lncurses -llua -Wall -lpthread
 
 # gpio:
 # 	WITH_GPIO = -DWITH_GPIO
